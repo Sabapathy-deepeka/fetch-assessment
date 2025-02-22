@@ -65,7 +65,7 @@ def insert_brand(json_file):
     finally:
          cursor.close()
          conn.close()
-         print("🔌 Connection closed.")
+         print("Connection closed.")
 
 
 insert_brand("brand.ndjson")
