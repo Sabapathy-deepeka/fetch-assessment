@@ -89,7 +89,7 @@ def insert_receiptItem(json_file):
     finally:
          cursor.close()
          conn.close()
-         print("🔌 Connection closed.")
+         print("Connection closed.")
 
 
 insert_receiptItem("receiptItem.ndjson")
