@@ -58,7 +58,7 @@ QUERIES = {
         """
     },
     "Negative or Zero Values": {
-        "receipts": "SELECT receiptId FROM receipts WHERE cast(totalSpent AS NUMERIC) <= 0.0;",
+        "receipts": "SELECT receiptId,totalSpent FROM receipts WHERE cast(totalSpent AS NUMERIC) <= 0.0;",
         "receiptItem": "SELECT receiptId FROM receiptItem WHERE itemPrice <= 0.0 OR finalPrice <= 0.0;"
     },
     "Invalid Date Ranges": {
