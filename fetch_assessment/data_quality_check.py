@@ -2,10 +2,8 @@ import psycopg2
 import os
 from dotenv import load_dotenv
 
-# Load environment variables (Optional)
 load_dotenv()
 
-# PostgreSQL connection parameters
 DB_CONFIG = {
     "dbname": os.getenv("DB_NAME"),
     "user": os.getenv("DB_USER"),
@@ -14,7 +12,7 @@ DB_CONFIG = {
     "port": os.getenv("DB_PORT")
 }
 
-# Function to connect to PostgreSQL
+#Connect to PostgreSQL
 def connect_db():
     try:
         conn = psycopg2.connect(**DB_CONFIG)
@@ -24,7 +22,7 @@ def connect_db():
         print(f"Error connecting to DB: {e}")
         return None
 
-# Function to execute a single query and print results
+# Execute a query and print results
 def run_query(query, conn, check_name, table_name):
     try:
         with conn.cursor() as cursor:
@@ -39,7 +37,7 @@ def run_query(query, conn, check_name, table_name):
     except Exception as e:
         print(f"Error executing query for {table_name}: {e}")
 
-# Define separate data quality check queries
+
 QUERIES = {
     "Missing Values": {
         "brand": "SELECT brandId, brandCode FROM brand WHERE brandId IS NULL OR brandCode IS NULL;",
@@ -72,7 +70,7 @@ QUERIES = {
     }
 }
 
-# Run all checks separately
+# Run checks separately
 def main():
     conn = connect_db()
     if conn:
@@ -83,6 +81,6 @@ def main():
         conn.close()
         print("\nData Quality Checks Completed!")
 
-# Run the script
+
 if __name__ == "__main__":
     main()
